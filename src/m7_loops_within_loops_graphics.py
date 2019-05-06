@@ -36,8 +36,9 @@ import rosegraphics as rg
 
 def main():
     """ Calls the   TEST   functions in this module. """
-    run_test_hourglass()
+    #run_test_hourglass()
     run_test_many_hourglasses()
+
 
 
 def run_test_hourglass():
@@ -92,7 +93,7 @@ def hourglass(window, n, point, radius, color):
     a color that rosegraphics understands.
     """
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #       We provided some tests for you (above).
     # -------------------------------------------------------------------------
     ###########################################################################
@@ -214,6 +215,21 @@ def many_hourglasses(window, square, m, colors):
     #                         a correct "hourglass" function above)
     #    TIME ESTIMATE:  20 minutes (warning: this problem is challenging)
     # -------------------------------------------------------------------------
+
+    y=square.center.y
+    square.attach_to(window)
+    window.render()
+    radius=square.length_of_each_side/2
+    firstx = square.center.x
+    for k in range(1,m+1):
+        if(k<=len(colors)):
+            color=colors[k-1]
+        else:
+            color=colors[((k-1)%len(colors))]
+        hourglass(window,k,rg.Point(firstx,y),radius,color)
+        firstx+=radius+radius*2*(k)
+
+
 
 
 # -----------------------------------------------------------------------------
