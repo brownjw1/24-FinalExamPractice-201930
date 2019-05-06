@@ -217,10 +217,13 @@ def many_hourglasses(window, square, m, colors):
     # -------------------------------------------------------------------------
 
     y=square.center.y
-    square.attach_to(window)
-    window.render()
+    #square.attach_to(window)
+    #window.render()
     radius=square.length_of_each_side/2
     firstx = square.center.x
+    initialLeftX=square.center.x-radius
+    initialTopY=square.center.y-radius
+    bottomY=initialTopY+radius*2
     for k in range(1,m+1):
         if(k<=len(colors)):
             color=colors[k-1]
@@ -228,6 +231,12 @@ def many_hourglasses(window, square, m, colors):
             color=colors[((k-1)%len(colors))]
         hourglass(window,k,rg.Point(firstx,y),radius,color)
         firstx+=radius+radius*2*(k)
+        rect=rg.Rectangle(rg.Point(initialLeftX,initialTopY),rg.Point(initialLeftX+radius*2*(k),bottomY+radius*math.sqrt(3)*(k-1)))
+        rect.attach_to(window)
+        window.render()
+        initialTopY-=radius*math.sqrt(3)
+        initialLeftX+=radius*2*(k)
+
 
 
 
