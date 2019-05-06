@@ -105,12 +105,6 @@ def hourglass(window, n, point, radius, color):
     #    TIME ESTIMATE:  25 minutes (warning: this problem is challenging)
     # -------------------------------------------------------------------------
 
-    #circle=rg.Circle(point,radius)
-    #circle.fill_color=color
-    #circle.attach_to(window)
-    #line=rg.Line(rg.Point(point.x-radius,point.y),rg.Point(point.x+radius,point.y))
-    #line.attach_to(window)
-    #window.render()
     centralx=point.x
     centraly=point.y
     botX = centralx
@@ -119,7 +113,7 @@ def hourglass(window, n, point, radius, color):
     topY=centraly+radius*math.sqrt(3)
     for k in range (n+1):
         for j in range(k):
-            new_circle=rg.Circle(rg.Point(topX,topY),radius)
+            new_circle=rg.Circle(rg.Point(topX+radius/2,topY),radius)
             new_circle.fill_color=color
             new_circle.attach_to(window)
             line = rg.Line(rg.Point(new_circle.center.x-radius,new_circle.center.y),rg.Point(new_circle.center.x+radius,new_circle.center.y))
@@ -127,10 +121,10 @@ def hourglass(window, n, point, radius, color):
             window.render()
             topX+=radius*2
         topY-=radius*math.sqrt(3)
-        topX=centralx-radius*(k+1)
+        topX=centralx-radius*(k+1)+radius/2
 
         for m in range(k):
-            new_circle=rg.Circle(rg.Point(botX,botY),radius)
+            new_circle=rg.Circle(rg.Point(botX+radius/2,botY),radius)
             new_circle.fill_color=color
             new_circle.attach_to(window)
             line = rg.Line(rg.Point(new_circle.center.x - radius, new_circle.center.y),rg.Point(new_circle.center.x + radius, new_circle.center.y))
@@ -138,7 +132,7 @@ def hourglass(window, n, point, radius, color):
             window.render()
             botX+=radius*2
         botY+=radius*math.sqrt(3)
-        botX=centralx-radius*(k+1)
+        botX=centralx-radius*(k+1)+radius/2
 
 
 
